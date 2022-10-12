@@ -1,12 +1,8 @@
 name: Email Notification
 
 on:
-  push:
-    branches:
-      - master
-    paths-ignore:
-      - README.md
-  workflow_dispatch:
+  schedule:
+    - cron: '0 14 * * *'
 
 jobs:
   main:
