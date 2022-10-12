@@ -1,0 +1,2 @@
+Finish deep learning course hw1
+Write a blog post about it

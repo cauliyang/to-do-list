@@ -22,6 +22,25 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Update Todo
+        run: |
+          python update_todo.py
+
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=today::$(date +'%Y-%m-%d')"
+
       - name: Send email
         uses: dawidd6/action-send-mail@v3.7.0
         with:
@@ -31,9 +50,9 @@ jobs:
           password: ${{secrets.PASSWORD}}
           subject: ${{matrix.subject}}
           body: ${{matrix.body}}
-          html_body: ${{matrix.html_body}}
+          html_body: file://todos/${{steps.date.outputs.today}}.md
           to: yangyang.li@northwestern.edu
-          from: github-actions
+          from: TODAY-TODO-LIST
           attachments: ${{matrix.attachments}}
           convert_markdown: ${{matrix.convert_markdown}}
           priority: high
