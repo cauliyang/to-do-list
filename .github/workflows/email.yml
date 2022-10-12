@@ -15,9 +15,9 @@ jobs:
       max-parallel: 1
       matrix:
         include:
-          - subject: Plain body (Markdown)
+          - subject: HTML body (Markdown)
             convert_markdown: true
-            body: file://README.md
+            html_body: file://README.md
 
     steps:
       - name: Checkout code
