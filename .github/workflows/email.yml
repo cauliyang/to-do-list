@@ -32,7 +32,7 @@ jobs:
           subject: ${{matrix.subject}}
           body: ${{matrix.body}}
           html_body: ${{matrix.html_body}}
-          to: ${{github.event.pusher.email}}
+          to: yangyang.li@northwestern.edu
           from: github-actions
           attachments: ${{matrix.attachments}}
           convert_markdown: ${{matrix.convert_markdown}}
