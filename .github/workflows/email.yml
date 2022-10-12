@@ -22,8 +22,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Send mail
-        uses: ./
+      - name: Send email
+        uses: dawidd6/action-send-mail@v3.7.0
         with:
           server_address: smtp.gmail.com
           server_port: 465
