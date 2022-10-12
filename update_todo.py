@@ -6,7 +6,7 @@ from jinja2 import Environment, FileSystemLoader
 
 def read_todos():
     with open("todos/todo.md") as f:
-        return [line.strip() for line in f.readlines()]
+        return [line.strip() for line in f.readlines() if line.strip() != ""]
 
 
 def clean_todos():

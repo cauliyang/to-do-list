@@ -11,13 +11,6 @@ on:
 jobs:
   main:
     runs-on: ubuntu-latest
-    strategy:
-      max-parallel: 1
-      matrix:
-        include:
-          - subject: HTML body (Markdown)
-            convert_markdown: true
-            html_body: file://README.md
 
     steps:
       - name: Checkout code
@@ -48,11 +41,22 @@ jobs:
           server_port: 465
           username: ${{secrets.USERNAME}}
           password: ${{secrets.PASSWORD}}
-          subject: ${{matrix.subject}}
+          subject: "Todo for ${{steps.date.outputs.today}}"
           body: ${{matrix.body}}
           html_body: file://todos/${{steps.date.outputs.today}}.md
           to: yangyang.li@northwestern.edu
           from: TODAY-TODO-LIST
-          attachments: ${{matrix.attachments}}
-          convert_markdown: ${{matrix.convert_markdown}}
+          attachments: ""
+          convert_markdown: true
           priority: high
+
+      - name: Commit files
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git commit -m "update todos" -a
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
