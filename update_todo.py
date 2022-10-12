@@ -28,7 +28,7 @@ def write_md(md: str) -> None:
 def main():
     todos = read_todos()
     write_md(generate_md(todos))
-    clear_todos()
+    clean_todos()
 
 
 if __name__ == "__main__":
