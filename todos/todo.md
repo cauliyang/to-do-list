@@ -1,0 +1,6 @@
+- [ ] change cloth size 
+- [ ] prepare for the niw 
+- [ ] analyze data in same celllines
+- [ ] change insurance 
+- [ ] check parking lot
+- [ ] check circle graph 
